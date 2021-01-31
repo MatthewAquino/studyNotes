@@ -1,0 +1,3 @@
+VTY (Virtual Teletype) is a virtual port that is used to get Telnet or SSH accesss to a device, VTY is used soley for virtual inbound connections to the device.
+
+enable password is stored in plain text format and not encrypted where as enable secret is encrypted using MD5
