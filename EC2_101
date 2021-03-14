@@ -1,0 +1,58 @@
+What is EC2? : Elastic Compute Cloud
+
+	Virtual Server (Servers) in the cloud that reduce the time required to obtain and boot new server instances to minutes
+	allowing you to quickly scale capacity both up and down as your requirements change.
+
+EC2 Pricing Models:
+
+	On Demand 
+	 - Pay a fixed rate by the hour (or the second) with no commitment
+	 - For users that want the low cost and flexibility
+	 - Applications with short term,spiky,or unpredictable workloads
+	 - Applications being developed or tested on EC2 
+
+	Reserved
+	 - Provides you with a capacity reservation, and offer a significant discount on the hourly charge for an instance (1 and 3 year terms)
+	 - Applications with steady state or predictable usage
+	 - Applications that require reserved capacity 
+	 - Users able to make upfront payments to reduce their total computing costs even further
+
+	Spot
+	 - Enables you to bid whatever price you want for instance capacity providing for even greater savings.
+	 - The instance is terminated if the price goes above what you are bidding
+		- If the instance is terminated by the price going up you pay for a partial hour
+		- If you terminate the instance you pay for the full hour
+	 - Application that have flexible start and end times
+	 - Applications that are only feasible at very low computer prices
+	 - Users with Urgent computing needs for a large amounts of additional capacity	
+	
+	Dedicated Hosts
+	 - Physical EC2 Server dedicated for your use. Help you reduce cost by allowing you to use your existing server-bound licenses
+	 - Useful for regulator requirements that may not support multi-tenant virtualization
+	 - May be purchased On-Demand and Reserved 
+ 
+What is Amazon EBS?:
+
+	- Allows you to create storage volumes and attach them to EC2 Instances, Once attached you create a file system on top of these volumes
+	run databases or use them in any way you would use a block device (Virtual Hard Disk)
+	- EBS are placed in a specific Availability Zone where they are automatically replicated to protect you from the failure of a single component
+	- EC2 Instance needs to be in the same availability zone as your EBSi
+
+Types of Amazon EBS:
+
+	SSD :
+	- General Purpose SSD (GP2)
+		- Balances price and performance for a wide variety of workloads
+	- Provisioned IOPS SSD(I01) 
+		- Highest Performance SSD Volume for mission-critical low-latency or high-throughput workloadsi
+
+	Magnetic :
+	 - Throughput Optimized HDD(ST1) 
+		- Low cost HDD volume designed for frequently accessed,throughput intensive workloads
+	 - Cold HDD(SC1)
+		- Lowest Cost HDD volume designed for less frequently accessed workloads(File Servers)
+	 - Magnetic 
+		-Previous Generation
+	
+	
+	

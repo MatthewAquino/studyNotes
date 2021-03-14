@@ -1,0 +1,40 @@
+
+
+What is IAM? : Identity and Access Management 
+    
+    - Centralized Control of your AWS Account
+    - Gives you shared access to your AWS Account
+    - Granular Permissions
+    - Multi-Factor Authentication 
+    - Ability to provide temporary access 
+    - A customizable password roation policy
+    - Integration with other AWS Services 
+
+Key IAM Terminolgoy 
+
+    Users : The end users 
+    Groups : A collection of users (Each user in the group will inherit the permissions of the group)
+        to set permissions in a group you need to apply a policy to it
+    Roles : You create roles and assign them to AWS Resources
+    Policies : Policies are made up of documents, which are called Policy Documents that are formated in JSON
+        These provide permissions for users,groups and roles
+
+
+Ways to access the AWS platform
+
+    - Via the console 
+    - Programmatically (Via the Command Line)
+    - Using a software development kit (SDK)
+
+IAM Best Pracitces 
+
+    - Only use the root account to create your AWS account (Do not use it to login)
+    - One user should equal one real human  being 
+    - Always place users in groups then apply polices to the groups
+    - Strong password rotation Policy
+    - MFA
+    - Use roles to access AWS Services
+    - Use access keys for programmatic access to AWS
+    - IAM Credential report to audi permissions of user/accounts
+
+

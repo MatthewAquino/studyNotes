@@ -1,0 +1,12 @@
+
+
+What is versioning?
+
+        - Stores all Versions of an object
+            Includes all writes / and if you delete an object
+        - Great Backup Tool
+        - Versioning cannot be disabled
+            Once enabled versioning cannot be disabled only suspended
+        - Integrates with lifecycle rules
+        - Versionings MFA Delete capability
+            Uses MFA; can be used to provide an additional layer of security 

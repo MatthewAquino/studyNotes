@@ -1,0 +1,26 @@
+
+
+AWS Global Infrastructure
+
+    19 Regions & 57 Availability Zones
+
+    What is the difference between a region and availability zone?
+        
+        - An availability zone consists of one or more data centers with redundant power,networking,and connectivity
+        housed in separate facilities
+        - A region is a geographical area, each region consists of 2 or more availability zones
+
+    Edge Locations 
+
+        - Edge Locations are endpoints for AWS which are used for caching content. Typically consisting of CloudFront 
+        which is Amazons Content Delivery Network(CDN) 
+        - There are currently over 150 edge locations
+
+    How to choose the right AWS Region?
+
+        - Data Sovereignty Laws
+        - Latency to end users
+        - AWS Services 
+            - US-East1 is the primary release region it can take some time for other regions to get new services
+
+        
