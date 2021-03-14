@@ -1,0 +1,17 @@
+
+
+Different AWS Support Plans : 
+
+    - Basic | Price Price : Included 
+        Customer service for account and billing questions and access to the AWS community 
+        forums
+    -Developer | Use Case : Experimenting with AWS | Price : 29$/Month
+        One primary contact may ask technical questions through support center
+        (12-24 response time)
+    -Business | Use Case : Production use of AWS | Price : 100$/Month
+        24x7 Support by phone and chat , one hour response to urgent support cases
+        Full access to AWS Trusted Advisor
+    -Enterprise | Use Case : Mission critucal use of AWS | Price 15,000$/Month
+        All above features plus an assigned TAM who provcides proactive guidance and best
+        practices
+

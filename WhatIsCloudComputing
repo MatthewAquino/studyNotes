@@ -1,0 +1,80 @@
+ What is Cloud Computing?
+
+     It is the on demand delivery of compute,database,application and other IT resources via the internet
+     with pay-as-you-go-pricing
+
+ What are the six advantages of cloud computing?
+
+     1. You can trade capital expense for variable expense
+         Instead of investing heavily in data centers and servers you only pay for what you use when you use it
+     2. Benefit from massiv economies of scale
+         You benefit from the purchasing power of Amazon
+     3. Stop guessing about capcatiy
+         You can scale your resources with your business needs with no long term contracts
+     4. Increase speed and agility
+         Reduce the time needed to make resources available
+     5. Stop spending money running and maintaing data centers
+         Focus on what you are good at
+     6. Go global in minutes
+         Deploy your application in multiple regions around the world in just a few clicks
+
+ Three kinds of cloud computing types
+
+     1. Infrastructure As A Service (IAAS)
+         -You manage the server which can be physical or virtual as well as the operating system. Usually the data centre      provider
+         has no access to your server (EC2)
+
+     2. Platform As A Service (PAAS)
+         - Someone else manages the underlying hardware and operating systems. You just worry about your application
+
+     3. Software As A Service (SAAS)
+         - You are provided a completed product that is run and managed by the service provider (Gmail)
+
+ Three types of cloud computing deployments
+
+     1. Public Cloud
+         - AWS, Azure, GCP
+     2. Hybrid
+         - Mixture of public and private
+     3. Private Cloud (On-Premise)
+         - You manage it in your datacenter (Vmware,Hyper-V)
+
+ AWS High Level Services That apply to the Certified Cloud Practioner
+
+     Compute
+         EC2 (Virtual Machines)
+         Lambda (PAAS)
+     Storage
+         Simple Storage Service (S3)
+         Glacier
+     Databases
+         DynamoDB (Non Relational Databases)
+         Relational Database Service (RDS)
+     Migration & Transfer (Good to know not required )
+     Network & Content Delivery (Good to know not required)
+         VPC
+         Route 53(DNS Service)
+     Security,Identity & Compliance
+     AWS Cost Management
+
+ What is Cloud Computing?
+
+     It is the on demand delivery of compute,database,application and other IT resources via the internet
+     with pay-as-you-go-pricing
+
+ What are the six advantages of cloud computing?
+
+     1. You can trade capital expense for variable expense
+         Instead of investing heavily in data centers and servers you only pay for what you use when you use it
+     2. Benefit from massiv economies of scale
+         You benefit from the purchasing power of Amazon
+     3. Stop guessing about capcatiy
+         You can scale your resources with your business needs with no long term contracts
+     4. Increase speed and agility
+         Reduce the time needed to make resources available
+     5. Stop spending money running and maintaing data centers
+         Focus on what you are good at
+     6. Go global in minutes
+         Deploy your application in multiple regions around the world in just a few clicks
+
+

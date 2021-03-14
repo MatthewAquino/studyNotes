@@ -1,0 +1,113 @@
+
+
+What does S3 Stand for and what does it do?
+
+    - Simple Storage Service 
+    - S3 is a place to put your flat files (A file that does not change)
+    - S3 is an object-based storage (A place where you store your files)
+    - The data is stored in multiple places and across multiple facilites
+
+Basics of S3 
+
+    - S3 is Object-Baed (Allows you to upload files)
+    - Files can from 0 Bytes to 5TB
+    - There is unlimited storege
+        - When you upload a file to S3 you will recieve an http 200 if it is successfull
+    - Files are stored in buckets (Folders in the cloud)
+        -Buckets share a universal namespace (Names must be unique globally)
+
+S3 Objects
+
+    S3 Objects are a Key-Value Store
+
+    Objecsts consist of :
+        - A Key (The name of the object)
+        - Value (This is the data)
+        - Version ID (Important for versioning)
+        - Metadata (Data about data you are storing )
+        Subresources ;
+            Access Control Lists (ACL)
+            Torrents
+
+
+Data consistency 
+
+    - Read after write consistency for PUTS of new objects ;
+        - If you write a new file(PUTting a file in S3) and read it immediatley afterwards, you will be able to 
+        view that data
+    - Eventual consistency for overwrite PUTS and DELETES (have to propagate) ;
+        - If you update an EXISTING FILE or delete a file and read it immediatley, you may get the older version
+        or you may not 
+        - Changes to objects can take time to propagate
+
+S3 Guarantees 
+
+    - Built for 99.99% Availability for the S3 Platform
+    - Amazon guarantee 99.9% availability
+    - Amazon guarantee 99.999999999% durability for S3 Information (The 11 9's)
+
+
+S3 Features
+    
+    - Tiered storage avaiable 
+    - Lifecycle management
+    - Versioning
+    - Encryption
+    - Secure your data with ACLs and bucket policies 
+        - ACL work on the object level 
+        - Bucket polices work on entire buckets
+
+
+S3 Storage classes
+
+    -S3 Standard
+        99.99 availability
+        11x9 durability 
+        Stored across multiple facilites 
+        can sustain the loss of two facilities
+    S3 - IA (Infrequently Accessed)
+        For data that is accessed less frequently 
+        Lower cost than S3 
+        Charged a retreval fee
+    S3 - One Zone IA
+        Lower cost option for IA Data
+        Does not require multiple availability zones
+    S3 - Intelligent Tiering
+        Designed to optimze costs by automatically moving data to the most cost effective tier
+        Designed to cause no overhead or impact performance 
+    S3 - Glacier
+        Secure, Durable, low cost
+        for Data archiving
+        Retrieval times are configurable from mins to hours
+    S3 - Glacier Deep Archive
+        Lowest cost storage
+        Retrieval time of 12 hours is acceptable
+
+S3 Charges
+
+    You are charged for :
+        Storage size
+        Requests
+        Storage Management Pricing
+        Data Transfers
+        Transfer Acceleration
+            Enables the fast,eay and secure transfers of files over long distances between your end users
+            and an S3 bucket (Uses Amazon Cloudfront CDN)
+        Cross Region Replication 
+
+Exam Tips
+
+    S3 Is object based 
+    Files can be from 0Bytes to 5TB
+    Unlimited storage
+    Files are stored in buckets
+    Bucket names need to be unique globally
+    Links look like : S3 - Region . amazonaws.com / Bucket name 
+    Not able to install an OS on
+    Successful uploads will generate a HTTP200 Status code
+
+
+
+
+
+

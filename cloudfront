@@ -1,0 +1,28 @@
+
+
+What is CloudFront?
+
+	Cloudfront is amazons CDN 
+	 A CDN (Content Delivery System) is a system of distributed servers that deliver webpages 
+	 and other webcontent to a user based on geographic location.
+	 Cached items are cached for the life of the TTL
+
+Three Key Terms
+	
+	Edge Location:
+	 This is a location where content will be cached (Seperate to an AWS Region/AZ)
+	 Edge locations are not just READ only - You can also write to them 	
+
+	Origin : 
+	 This is the origin of all the files that the CDN will distribute (S3 Bucket,EC2 Instance,ETC.)
+
+	Distribution :
+	 This is the name given to the CD which conssts of a collection of edge locations
+
+Types of Distributions
+
+	Web Distribution :
+	 Used for Webpages 
+	
+	RTMP :
+	 Used for Media streaming (Not very common)
