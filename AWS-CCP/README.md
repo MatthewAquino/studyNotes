@@ -1,2 +1,0 @@
-# studyNotes
- Certifications Notes
