@@ -1,0 +1,68 @@
+
+
+Traditional Computing vs Cloud Computing
+
+
+    - IT Assets as provisioned resources
+        It resources are now avaiable to you as provisioned resources (cloudFormation,)
+    - Global, Available and Scaleable Capacity
+    - Higher level managed services
+    - Built-in Security
+    - Architecting for cost
+    - Operations on AWS
+
+Scalability
+    
+    - Scale up
+        - Increase the resources of a virtual machine
+    - Scale up
+        - Add more virtual machines behind a load balancer
+        - Stateless Applications
+            - An application that does not save client data generated in one session use in the next session (Think lambda)
+        - Distribute Load to Multiple Nodes
+        - Stateless Components
+        - Stateful Components
+        - Implement Session Affinity
+            - Sticky Sessions (Think Keep you on the same EC2 Instance if there are serveal behind a load balancer)
+        - Implement Distributed Processing
+            - Allows you to have lots of EC2 instances that process large amounts of data/process
+
+Disposable Resources instead of fixed servers
+
+    - Be able to terminate enviroments and not be lacked to contracts, creates flexibility
+
+    - Instantiating Compute Resources
+        - Bootstrapping
+        - Golden Images
+        - Containers
+
+    - Infrastrucutre as Code (IAC)
+        - CloudFormation
+        - Terraform
+Automation
+
+    - Serverless Management and Deployment
+        - No need to worry about enviroment
+    - Infrastructure Management and Deployment
+        - AWS Elastic Beanstalk
+        - Amazon EC2 Auto Recovery
+        - AWS Systems Manager
+        - Auto Scaling
+    - Alarms and Events
+        - Amazon Cloudwatch alarms/events
+        - AWS Lambda scheduled events
+        - AWS WAF(Web Application Firewall) security automations
+
+Loose Coupling
+
+    - Well defined Interfaces
+        - Amazon API Gateways
+    - Service Discovery
+        - Implement Service Discovery
+    - Distributed Systems Best Practices
+        - Graceful failure in pracitce
+
+Services not servers
+
+    - Managed Services
+    - Serverless Architectures
