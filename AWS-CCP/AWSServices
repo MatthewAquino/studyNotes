@@ -1,0 +1,30 @@
+
+Global AWS Services
+ 
+ - Identity Access Management
+ - Route53
+ - Cloutfront (CDN)
+ - SNS
+ - SES
+
+
+Some services give global views but are regional
+
+ - S3 Buckets
+
+
+What AWS Services can be used on premise?
+
+ - Snowball 
+    A large disk(HDD) that is sent to your head quarters, that you then upload your data in and send back to AWS (Generally 80TB)
+ - Snowball Edge
+    Same as a snowball but has a CPU, allows you to deploy lambda functions on-premise (Where you cannot get AWS Connectiivty but need AWS Resources)
+ - Storage Gateway
+    Similar to a snowball but stays on-premise (A way of caching your files that are replicated to AWS)(Can be virtual or physical)
+ - Code Deploy
+    A way to automate software deployments to AWS services
+ - OpsWorks
+    Similar to elastic beanstalk (Uses Chef)
+ - IOT Greengrass
+    Connects IOC devices to the cloud
+  

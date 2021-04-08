@@ -1,0 +1,16 @@
+
+
+What is cloudWatch?
+
+ - A monitoring services to monitor your AWS resources and applications
+
+What can it monitor?
+ 
+ - Compute
+    - EC2,etc
+ - Storage and CDN
+ - Monitors the underlying host
+    - CPU
+    - Network
+    - Disk
+    - Status Checks
