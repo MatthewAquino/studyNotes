@@ -1,0 +1,9 @@
+ 
+
+What is System Manager?
+ 
+ - Can be used to manage fleets of EC2 instances & virtual machines
+ - A piece of software is installed on each VM
+ - Can be both inside AWS and on Premise
+ - Can be used to install, patch, uninstall software
+ - Integrate with cloudwatch to give you a dashboard of your entire estate
