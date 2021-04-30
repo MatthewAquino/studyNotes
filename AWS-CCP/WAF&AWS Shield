@@ -1,0 +1,11 @@
+AWS WAF  (Web Application Firewall)
+    
+    A web application firewall that helps to protect your web apps from common web exploits
+    Wokrs at layer 7 of the OSI model designed to stop attackers from doing cross site scripting or sql injections
+
+AWS Shield
+    
+    AWS Shield is a managed DDOS protection service that safeguards web applications running on AWS 
+
+    Provides always-on detection and automatic inline mitigations
+    Has two tiers standard and advanced(3000 a month for advanced)

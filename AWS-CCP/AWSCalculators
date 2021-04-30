@@ -1,0 +1,9 @@
+
+
+AWS helps you to calculate your costs using a couple of different calculators
+
+    Available in two feature sets ;
+        - AWS Simple montly calculator
+            - Based off what AWS Service you use this calculates your running cost on a montly basis (Not a comparison tool)
+        - AWS Total cost of ownership
+            - This is iused to compare the cost of running your infrastructure on prem vs in the AWS Cloud.
