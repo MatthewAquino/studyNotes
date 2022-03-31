@@ -152,7 +152,7 @@ This is disabled by default, but when it is enabled S3 uses AWS edge location.
   - S3 filtering occurs in-app which retrieves all the objects in a bucket all of which you are billed for
 - if you have an app in-taking data but it is being filtered through S3 select:
   - SQL-like expression provided to S3 select only the selected files are transferred and billed  
-  - Increase speed the data is received as fewer objects are transferred 
+  - Increase speed the data is received as fewer objects are transferred
 
 ### S3 Life Cycle Configuration
 
@@ -190,7 +190,7 @@ This is disabled by default, but when it is enabled S3 uses AWS edge location.
     - Adds a guaranteed 15 minute replication SLA on this process
     - Without replication is a best effort process
   - Replication Metrics and Notifications
-    - Monitor the progress of your replication rule through Cloudwatch Metrics
+    - Monitor the progress of your replication rule through Cloud-watch Metrics
   - Delete Marker Replication
     - Delete markers created by S3 delete operations will be replicated (Deletions in the source are replicated to the destination)
 - S3 Replication Considerations
@@ -243,7 +243,7 @@ This is a feature that allows you receive notifications when certain events happ
 
 - A feature in S3 that provides detailed records for the requests that are made to a bucket
   - Log files consist of `log records` records are `newline-delimited`
-    - These records contain `attributes` which contains things such as date/time,the requester, the operation,etc (these are `space delimited`)
+    - These records contain `attributes` which contains things such as date/time,the requester, the operation,etc. (these are `space delimited`)
 
 ## Virtual Private Cloud (VPC)
 
@@ -260,6 +260,61 @@ This is a feature that allows you receive notifications when certain events happ
   - Try to predict the future
   - VPC Structure - Tiers & Resiliency (Availability) Zones
     - Subnets are available in 1 availability zone
+  - You can optionally assign a IPv6 by using a `/56 CIDR` block
+    - Either AWS will provide the range to you, or you can use an IPv6 range that you own
+
+### Custom VPCs & VPC Theory
+
+- VPCs are regionally isolated and regionally resilient service
+  - It is created in a region and operates from all AZs in that region
+- Allows you to create isolated networks inside AWS
+  - Even in a single region in an account you can have multiple isolated networks
+- Nothing is allowed IN or OUT without explicit configuration
+- Flexible configuration Simple or Multi-tier
+- Hybrid networking
+  - Allows you to connect  your network to other cloud providers or to your on-premise networks
+- `Default` or `Dedicated Tenancy`
+  - Controls weather the services provisioned inside of an VPC are provisioned on shared hardware or dedicated hardware
+  - `Default` :
+    - Allows you to choose on a per-resource when you provision resources
+  - `Dedicated Tenancy` :
+    - Any resource created within the VPC HAVE to be on dedicated hardware
+- VPCs have a fully featured DNS provided by Route 53
+  - its available on the VPC `Base IP +2` address
+    - If you have a base IP of `10.0.0.0` the DNS IP would be `10.0.0.2`
+    - Has two important settings :
+      - `EnableDnsHostnames` - gives instances DNS Names
+        - Defines if instances with a public IP are given public DNS names
+      - `EnableDnsSupport` - enables DNS resolution in VPC
+        - If enabled instances instances in the VPC use DNS resolution
+
+### VPC Subnets
+  
+- What is a subnet
+  - AZ resilient feature of a VPC
+  - A sub-network of a VPC - Created within 1 AZ and cannot be changed
+    - 1 subnet is in 1 AZ, and a subnet can never be in more than 1 AZ  
+    - if the AZ fails so does the subnet and services hosted in the subnet
+  - The IPv4 CIDR is a subset of the VPC CIDR
+    - Cannot overlap with other subnets
+  - Can optionally be given a IPv6 CIDR if its enabled on the VPC `/64` subset of the `/56` VPC (256 /65 Subsets)
+  - Subnets can communicate with other subnets in the VPC
+- Reserved subnet IP Addresses
+  - There are 5 reserved IP Addresses in every subnet
+    - `Network` Address - First address in the network
+    - `Network +1` Address - VPC Router (Logical Address that moves data between subnets and in/out the VPC)
+    - `Network +2` Address - This is used for DNS
+    - `Network +3` Address - Reserved for future use
+    - `Broadcast` Address - Last IP in the subnet
+- DHCP Option Sets
+  - 1 DHCP Option set is applied to 1 VPC at a time, this flows to subnets
+    - This controls things like DNS,NTP,NetBio,etc.
+    - DHCP option sets can be created but not edited
+      - If you want to change a setting you need to create a new one then change the VPC allocation to the new one
+- 2 Important subnet options
+  - These are both set at the subnet level
+    - Auto assign public IPv4 addresses
+    - Auto assign IPv6 addresses
 
 ## Encryption 101
 
