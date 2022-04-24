@@ -316,6 +316,36 @@ This is a feature that allows you receive notifications when certain events happ
     - Auto assign public IPv4 addresses
     - Auto assign IPv6 addresses
 
+### VPC Routing and Internet Gateway
+
+#### VPC Router
+
+- A highly available device that is present in every VPC
+  - Has a network interface in every subnet in your VPC (Network +1)
+  - By Default it only routes traffic between subnets in a VPC
+- Route Tables
+  - Controls what happens to data when it leaves the subnet its associated with
+  - You can either have the main route table of the VPC (Default) or a custom one you have created
+  - Route tables are attached to 0 or more subnets
+  - A subnet must have a route table
+  - Local routes always exist and match the VPC IPv4 or v6 CIDR range
+  - The more specific the rule the higher the priority
+
+#### Internet Gateways
+
+- `Regionally resilient` service that is attached to a VPC, 1 internet gateway will cover all the AZ in the region the VPC exists in
+- A VPC can have no Internet gateways (Private) or it can have 1 internet gateway
+  - Internet gateways only ever be attached to 1 VPC at a time
+- Gateways traffic between the VPC and the internet or the AWS public zone (S3,SQS,SNS,etc.)
+- Managed Gateway i.e AWS handles the performance
+
+#### Bastion Hosts/Jumpbox
+
+- Bastion Host = Jumpbox
+- An instance in a public subnet
+- Incoming management connections arrive here to then access internal VPC resources
+- Often the only way `IN` to a VPC
+
 ## Encryption 101
 
 ### Approaches to Encryption
