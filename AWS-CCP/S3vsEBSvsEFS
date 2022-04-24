@@ -1,0 +1,20 @@
+
+What is S3?
+ 
+ - Secure, Durable, Highly Scalabe object storge
+ - Store objects/Files within AWS
+ - Cannot install a DB/OS on it
+ - Flat objects/Static files
+
+What is EBS (Elastic Block Store)
+
+ - Persisten block storage volumes
+ - Basically a virtual hard disk in the cloud
+ - Designed to have OS and DB installed on them
+ - Automatically replicated within its availability zone
+
+What is EFS (Elastic File System)
+
+ - File storage for EC2 Instances 
+ - No set size, it grows and shrinks automatically (Its Elastic)
+ - Attached to EC2 instances

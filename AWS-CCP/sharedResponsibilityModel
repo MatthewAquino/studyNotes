@@ -1,0 +1,12 @@
+
+What is the shared responsibility model?
+    
+    AWS Manages the security of the cloud, security in the cloud is the responsibility of the customer
+    The customer retains control of what security they choose to implement to preotect their own content no differently than they would in a data 
+    center
+
+
+    Is this something you can do in the AWS console you are likely responsible
+    If not AWS is most likely responsible
+
+    Encryption is a shared responsibility

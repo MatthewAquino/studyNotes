@@ -1,0 +1,79 @@
+
+
+*****Read the White Paper*****
+
+
+AWS philosophy on pricing :
+
+    Pay as you go for what you use, pay less as you use more and pay even less when you reserve capactiy.
+
+CapEX vs OPEX
+
+    - Capex stands for capital expenditure which is where you pay up front, its a fixed sunk cost
+
+    - OPEX stands for Operational Expenditure which is where you pay for what you use, think Utility billing such as electricity,gas,water,etc.
+
+Pricing Policies
+
+    - Pay as you go
+    - Pay less when you reserve
+    - Pay even less per unit by using more
+    - Pay even less as AWS grows
+    - Custom pricing
+
+Pricing Best Practices
+
+    - Understand the fundamentals of pricing
+        - Three drivers of cost in AWS:
+            - Compute
+            - Storage
+            - Data outbound
+    - Start early with cost optimization
+        - Start early with cost optimization
+        - Easier to do so when the enviroment is small
+    - Maximize the power of flexibility
+        - By turning off resource when it is not in use reduces  cost by up to 70%
+    - Use the right pricing model for the job
+        - Use the correct tier for your companies needs
+        - There are some free services
+            - VPC
+            - Elastic Beanstalk
+            - CloudFormation
+            - IAM
+            - Auto scaling
+            - Opsworks
+            - Consoldiated Billing
+
+EC2 Pricing Models
+
+    - On demand
+        - Pay as you go
+    - Reserved
+        - Provides you with a capcity reservation at a discount
+    - Spot
+        - Bid for whatever price you want for instance capacity
+        - Provides greater savings for applications that have flexible start/end times
+    - Dedicated Hosts
+        - Physical EC2 Server dedicated for your use
+        - For server bound licensing
+
+
+Lambda Pricing
+
+    - Request Pricing :
+        - Free Tier: 1 Million requests per month
+        - $0.20 per 1 million requests thereafter
+    - Duration Pricing
+        -400,000GB-Second per month free, upt o 3.2 million seconds of compute time
+        - 0.00001667 for every GB-Second used thereafter
+
+
+AWS Budgets VS Cost explorer
+
+    AWS Budget 
+        - Give you the ability to set custom budgets that alert you when your costs or usage exceed your budgeted amount
+        - Used to budget costs BEFORE they have been incurred
+    Cost Explorer
+        - Lets you visualize, understand and manage yout AWS Costs and usage over time
+        - Used to explore costs AFTER they have been incurred
+

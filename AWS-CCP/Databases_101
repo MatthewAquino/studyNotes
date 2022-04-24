@@ -1,0 +1,60 @@
+
+What is a relational database?
+    
+    - Uses a structure that allows us to identify and access data in relation to another piece of data in the database
+      these are often organized into tables
+
+
+AmazonRDS (Relational Database Service) Key features
+    
+    - Multi-AZ - for disaster recovery
+            Deploy your AmazonRDS accross multiple availiablity zones, in the event of a failure amazon will fail over to another zone automatically
+
+    - Read-Rieplicas - For performance
+           - Writes that are made to a primary database and replicated to a secondary database, There is not an automatic fail over however
+           - You can set your EC2 instances to do their writes to the primary database then do their reads from the secondary databsei
+
+
+What is a non-relational database
+
+    These consist of :
+        
+        Collections     = Table
+        Document        = Row
+        Key Value Pairs = Fields
+
+Non relation Databases are as follows :
+
+    - The columns in the tables can vary
+    - This will not affect other rows in the databases
+    - This offers much more flexibility
+
+    - SQL, MySQL, PostgresSQL, etc. are considered Relational Databases
+
+Amazons Non-Relational Database is called DynamoDB
+
+
+OLTP (Online Transaction Processing) vs OLAP (Online Analytics Processing)
+
+    - OLTP captures and maintains transaction data in a database
+    - OLAP appliex complex queries to large amounts of historical data, aggregated from OLTP Databases and other sources for data mining and
+      analytics  This causes a massive performance hit on your database
+
+
+What is Data Warehousing
+
+    - Allows you to perform OLAP away from your production database by creating a secondary database that is built for OLAP queries
+    - Data warehousing databases use different types of architecture both from a database perspective and a infrastructure layer
+    - Amazons data warehousing solution is called redshift
+
+What is ElastiCache
+
+    - This is a web service that makes it easy to deploy,operate, and scale an in-memory cache in the cloud. 
+    - This improves the performance of web applications by allowing you to retrieve information from fast,managed,in-memory caches instead of
+      relying entirely on slower disk-based databases
+    - Caches your most common queries in the cloud to take the load off your live database
+    - ElastiCache supports two open-source in-memory caching engines :
+        - Memcached
+        - Redis
+
+

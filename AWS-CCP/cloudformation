@@ -1,0 +1,17 @@
+
+What is Cloudformation?
+
+    - Cloud formations is AWS answer to IAC (Infrastructure as code)
+            - Cloud formation consists of "Stacks"
+    
+    - Allows you to turn your infrastructure into code and allows you to make large rollout much easier&faster
+            - Can declare things such as :
+                - Passwords
+                - EC2 Instance Types
+                - Services
+                - Databases
+                - etc.
+
+    - Allows you to automate your entire infrastructure
+
+    - Cloudformation templates be written in JSON or YAML formating.

@@ -1,0 +1,9 @@
+What is Elastic BeanStalk?
+
+    - With Elastic Beanstalk you can quickly deploy and manage applications in the AWS Cloud without worrying about the infrastructure (PAAS)
+      you simply upload your application and it will automatically handle the details of the capacity provisioning, load balancing, scaling 
+      and health monitoring.
+
+    - Elastic Beanstalks are basically auto provisoned EC2 Instances and additonial databases.
+
+    - Not very important for AWS-CCP exam just need to know what it is.
