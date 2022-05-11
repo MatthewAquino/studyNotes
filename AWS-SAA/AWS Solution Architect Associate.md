@@ -1,4 +1,6 @@
 # AWS Solution Architect Associate
+  
+  Notes taken during learn.cantril.io SAA Course
 
 ## Key Management Server `KMS`
 
@@ -345,6 +347,132 @@ This is a feature that allows you receive notifications when certain events happ
 - An instance in a public subnet
 - Incoming management connections arrive here to then access internal VPC resources
 - Often the only way `IN` to a VPC
+
+### Stateful vs Stateless Firewalls
+
+- `Stateful`
+  - A  `stateful` can identify the request and response components of a connection as being related. (You generally only need to allow/deny the request and the response will be allowed/denied automatically (1 firewall rule))
+  - Do not have to allow the full ephemeral port range as the firewall will allow it based on it being the response to a request that is allowed
+- `Stateless`
+  - A `stateless` firewall does not understand the state of connections, it sees a request/response as two individual parts (need to allow/deny as different parts(inbound/outbound firewall rule))
+  - Have to allow the full ephemeral port range for the request as the firewall does not know which one it will choose
+
+### Network Access Control Lists `NACL`
+
+- `NACL` can be thought as a `stateless` traditional firewall available within an VPC.
+  - `NACL` are associated with subnets (Every subnet has an associated `NACL`) these filter data as it crosses the boundary of the subnet
+    - Connections between things within the subnet are not affected by `NACLs`
+    - Each subnet can have `one NACL` (Default or Custom) a `NACL` can be associate with `MANY Subnets`
+  - `NACL` rules are processed in order, lowest rule number first once a match occurs `Processing STOPS`
+  - There is a catch all rule shown by a `*` in the rule number this is an implicit deny
+  - `NACL` can only use IPs/CIDR, ports & protocols - No referencing logical resources within AWS
+- Since `NACLs` are `stateless` each communication needs 1 `REQUEST` rule and 1 `RESPONSE` rule
+- When a `VPC` is created it is created with a `Default NACL` this default `NACL` have an implicit deny (`*`) and an `ALLOW ALL` rule, the result is all traffic is allowed
+- Custom `NACL` can be created for a specific VPC and are initially associated with `NO` subnets these only have 1 `INBOUND` &  1 `OUTBOUND` rule, an implicit `DENY` meaning all traffic is denied
+
+### Security Groups (SG)
+
+- `Stateful` ; Detect `response` traffic `automatically`
+- Allowed (IN or OUT) request = Allowed Response
+  - Only one rule is needed to allow a request & response
+- `No explicit deny` only allow or `implicit deny`
+  - because of this they are often used in conjunction with `NACLs`
+  - Cannot block specific bad actors
+- Supports `IP/CIDR` and `logical resources`
+  - Including other security groups and itself
+- SGs are `not attached` to instances or subnets, they are attached to elastic network interface `ENI`
+
+### Network Address Translation (NAT) & NAT Gateway
+
+- Network Address Translation (NAT)
+  - A set of processes that remap the `SRC` or `DST` IPs
+  - A common form of NAT is `IP masquerading` - hiding CIDR blocks behind one IP
+    - This is common because IPv4 addresses are running out
+
+#### NAT Gateway
+
+- `NAT` can be accomplished in AWS via the NAT Gateway, which you put in a public subnet in a VPC
+  - Traffic is routed from the `NATGW` to the internet gateway which edits the packet to have a source address of the `NATGW` public address and sends it to the internet.
+  - Uses `elastic IPs` (Public Static IPv4 addresses)
+  - `AZ resilient service` (HA in that AZ)
+    - For region resilience ; Deploy a `NATGW` in each `AZ`
+    - Create a route table for each `AZ` with that `NATGW` as the target
+  - `NATGW` are a managed service, scale to `45Gbps`
+  - You are billed based on the number you have, there is a standard hourly charge for running a `NATGW`
+    - Along with a data processing charge (per GB of processed data)
+  - `DO NOT` support `SGs` only `NACLs`
+- The legacy way of doing this was a NAT Instance, which is just an EC2 instance with the NAT process running on it
+  - Need to disable `Source/Destination` checks if you want to use a NAT instance
+
+## Elastic Compute Cloud (EC2)
+
+### EC2 Architecture
+
+- EC2 instances are `virtual machines` (OS + Resources) that run on `EC2 Hosts`
+  - `EC2 Host` are either `Shared` or `Dedicated`
+    - `Shared Hosts` are shared across different AWS customers, you pay for the individual instances and their resources
+    - `Dedicated Hosts` are dedicated to only your account, you pay for the entire hosts and do not pay for any instances on it
+- EC2 instances are a `AZ RESILIENT` service, the hosts run in a single `AZ` and if the host fails the instance fails
+  - An instance stays on a host until one of two things happen (The new host will be in the same AZ):
+    - A host fails or is taken offline by AWS for maintenance
+    - An instance is stopped/then started
+- What is EC2 Good for (This is not an exhaustive  list) ?
+  - Traditional `OS + Application` Compute
+  - `Long Running` Compute Needs
+  - `Server Style` Applications
+  - `Burst` or `Steady-State` load
+  - `Monolithic` Application Stacks
+  - `Migrated` application workloads or `Disaster Recovery`
+
+### EC2 Instance Types
+
+- When you choose an instance type you are doing so to influence a few different things:
+  - `RAW resources` CPU, Memory, Local Storage Capacity & Type
+  - `Resource Ratios`
+  - `Storage & Data` Network `Bandwith`
+  - System Architecture & Vendor (ARM VS x86 or AMD vs INTEL etc.)
+  - Additional Features and Capabilities (GPUs, FPGAs,etc.)
+  
+- EC2 instances are grouped into 5 main categories
+  - `General Purpose` - **Default Instance Type you Should Choose** - Diverse workloads, equal resource ratio
+  - `Compute Optimized` - Media processing, Scientific Modelling, Gaming, Machine learning,etc. - Generally offer more CPU than memory
+  - `Memory Optimized` - Processing large in-memory datasets, some database workloads - Offer large memory allocations for a given dollar or CPU amount
+  - `Accelerated Computing` - Hardware GPU, Field Programmable Gate Arrays (FPGAs)
+  - `Storage Optimized` - Large amounts of very fast local storage - Sequential and Random IO - scale-out transactional databases, data warehousing, ElasticSearch, analytic workloads, etc.
+
+### Storage Refresher 
+
+- Key terms
+  - `Direct` (local) attached Storage - Storage that is directly connected to the EC2 Host called the instance store
+    - Generally very fast because it is directly connected
+  - `Network` attached storage - Volumes delivered over the network (Uses Elastic block store (`EBS`) in AWS)
+  - `Ephemeral` Storage - Temporary Storage (e.g Instance Store)
+  - `Persistent` Storage - Permanent storage - lives on past the lifetime of the instance (e.g Network attached storage delivered by EBS)
+- Storage Categories
+  - `Block` storage - `Volume` presented to the `OS` as a collection of blocks, no structure provided. They are `Mountable` and `Bootable`
+    - Comes in the form as SSDs,or HDD or as a logical volume which itself is backed by physical storage (SSD,HDD)
+  - `File` Storage - Presented as a file share, has a structure. It is `Mountable` but `NOT BOOTABLE`
+  - `Object` Storage - collection of objects, there is no structure it is just a flat collection of objects. it is `NOT MOUNTABLE` and `NOT BOOTABLE`
+- Storage Performance
+  - `IO` (Block) Size
+    - The size of the blocks of data you are writing to the disk
+  - Input-Output Operations per Second `IOPS`
+    - The number of IO operations to storage system can support in a second (How many Reads/Writes the disk can support per second)
+  - Throughput
+    - The possible throughput a storage system can get. Generally measured in MB/S. it is the `IO * IOPS`
+
+### Elastic Box Store (EBS) Service Architecture 
+
+- EBS Provides `Block Storage` - Takes raw physical disks and presents them as `volumes` - Can be `Encrypted` with `KMS`
+  - Instances see a `Block device` and create a `File System` on the device (ext3/4,xfs,etc.)
+  - Volumes are  attached to *one EC2 instance (or other service) over a storage network
+  - They can be `Detached` from an instance  and then `Reattached` to another , they are not linked to the life cycle of an instance they are `persistent`
+  - `Snapshots` can be created of an EBS and stored in `S3` this snapshot can be use to create a new volume in another `AZ` 
+  (Migrating between `AZs`)
+  - EBS can be Different physical `storage types`, `sizes`, and `performance profiles`
+  - Billed based on `GB-month` and in some cases `performance`
+- Storage is provisioned in **ONE AZ** (RESILIENT IN THAT AZ)
+  - `EBS` replicates data within an `AZ`, failure of an `AZ` means failure of a `volume`
 
 ## Encryption 101
 
