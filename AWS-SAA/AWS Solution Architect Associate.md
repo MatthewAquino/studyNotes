@@ -440,7 +440,7 @@ This is a feature that allows you receive notifications when certain events happ
   - `Accelerated Computing` - Hardware GPU, Field Programmable Gate Arrays (FPGAs)
   - `Storage Optimized` - Large amounts of very fast local storage - Sequential and Random IO - scale-out transactional databases, data warehousing, ElasticSearch, analytic workloads, etc.
 
-### Storage Refresher 
+### Storage Refresher
 
 - Key terms
   - `Direct` (local) attached Storage - Storage that is directly connected to the EC2 Host called the instance store
@@ -461,7 +461,7 @@ This is a feature that allows you receive notifications when certain events happ
   - Throughput
     - The possible throughput a storage system can get. Generally measured in MB/S. it is the `IO * IOPS`
 
-### Elastic Box Store (EBS) Service Architecture 
+### Elastic Box Store (EBS) Service Architecture
 
 - EBS Provides `Block Storage` - Takes raw physical disks and presents them as `volumes` - Can be `Encrypted` with `KMS`
   - Instances see a `Block device` and create a `File System` on the device (ext3/4,xfs,etc.)
@@ -473,6 +473,29 @@ This is a feature that allows you receive notifications when certain events happ
   - Billed based on `GB-month` and in some cases `performance`
 - Storage is provisioned in **ONE AZ** (RESILIENT IN THAT AZ)
   - `EBS` replicates data within an `AZ`, failure of an `AZ` means failure of a `volume`
+
+### EBS Volume Types - General Purpose
+
+- `GP2` : The default general purpose SSD based Storage
+  - Volumes can be as small as `1GB` or as large as `16TB`
+  - These are created with an `IO Credit Allocation`
+    - An `IO Credit` is  `16 KB` - `IOPS` assume `16 KB` - `1 IOPS` is `1 IO` in `1 Second`
+    - If you have no `IO Credits` you cannot perform any IO on the disc
+    - Has a capacity of `5.4 Million IO Credits` - Fills at rate of `Baseline Performance`
+      - The baseline rate you get with GP2 is based on the volume size you get `3 IO Credit per second per GB of volume size`
+        - A `100 GB` volume gets `300 IO Credits` per second
+        - Buckets fill with a min of `100 IO Credits` per second **Regardless of volume size**
+      - Can burst up to `3000 IOPS` by depleting your `IO "Bucket"`
+      - All volumes get an initial `5.4 Million` IO Credits
+      - Volumes larger  than `1000 GB` have a baselines equal to or exceeding the rate, so the credit system isn't used 
+        - Up to a maximum for GP2 of `16,000 IO Credits` per second
+  - GP2 is great for boot volumes, Low latency interactive apps, dev & test
+- `GP3` : Is also SSD based but removes the `IO Credit` for something much simpler :
+  - Every `GP3` volume regardless of size starts with **Standard** of `3000IOPS` & Can transfer `125 MB/s`
+    - If you need greater performance you can pay extra for up to `16,000 IOPS` or `1000 MB/S` of throughput
+  - At its base GP3 is `~20%` cheaper than GP2
+  - GP3 can be up to 4x Faster than GP2 a max throughput of `1000 MB/s` for GP3 vs a max of `250 MB/s` for GP2
+
 
 ## Encryption 101
 
