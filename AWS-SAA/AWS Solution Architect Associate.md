@@ -496,6 +496,95 @@ This is a feature that allows you receive notifications when certain events happ
   - At its base GP3 is `~20%` cheaper than GP2
   - GP3 can be up to 4x Faster than GP2 a max throughput of `1000 MB/s` for GP3 vs a max of `250 MB/s` for GP2
 
+### EBS Volume Types - Provisioned IOPS
+
+- EBS Provisioned IOPS SSD (io1/2)
+  - Three types of provisioned IOPs SSDs
+    - `io1/2` which are in general release
+    - Block express which is in pre-release
+  - `IOPs` are configurable independent of the volume size  
+  - designed for high performance situation where low latency and consistency of the low latency is vital
+  - io1/2 have a maximum of :
+    - `64,000 IOPs` per volume can be achieved (4x higher hat GP2/3)
+    - `1000 MB/s` throughput per volume (The same as GP3 and significantly higher than GP2)
+    - Further the max IOPs has a max depending on the volume size
+      - `io1` `50IOPs/GB` **(MAX)**
+      - `io2` `500IOPs/GB` **(MAX)**
+  - block express has a maximum of :
+    - `256,000 IOPs` per volume can be achieved
+    - `4000 MB/s of` throughput per volume
+    - Further the max IOPs has a max depending on the volume size
+      - `1000IOPs/GB` **(MAX)**
+  - Using `io1/2` you can have a volume size of `4GB - 16 TB`
+  - Using Block express you can have a volume size of `4GB - 64Tb`
+  - Per **instance performance** (Max performance between the EBS Service & an EC2 instance)
+    - This is influenced by :
+      1. The type of volume
+      2. The type of instance
+      3. The size of instance
+    - These **per instance** maxes are more than 1 volume can provide on its own (Need multiple volumes to saturate the per instance performance level)
+    - **io1** - `256,000IOPs` & `7,500MB/s` (~4 volumes of performance operating at its max)
+    - **io2** - `160,000IOPs` & `4,750MB/s` (~)
+    - **io2 Block Express** - `256,000 IOPs &` 7,500MB/s`
+
+### EBS Volume Types - HDD-Based
+
+- Two types of HDD Storage in EBS (+1 legacy one)
+  - `st1` : Throughput Optimized
+    - Cheap (less expensive that SSD volumes)
+    - Designed for data that is sequentially accessed
+      - Big data, data warehouses, log processing
+    - Volume sizes from `125GB` to `16TB`
+    - A max of `500 IOPs` (Measured in 1MB block) (Max `500`MB/s)
+    - Uses a Credit bucket like gp2, but is based on `MB/s` instead of `IOPs`
+      - Baseline performance of : `40MBs` per `1TB`
+      - Burst of : `250MBs` per `1TB`
+  - `sc1` : Cold HDD
+  - Max of `250 IOPs` and `250 MB/s` throughput
+    - Baseline performance of : `12MB/s per` `1TB`
+    - Burst of : `80MB/s` per `1TB`
+  - Volumes range from `125GB` to `16TB`
+  - Much lower price than `st1` but also much lower performance
+  - Designed for `"Colder Data"` (infrequently accessed)  
+    - Archives
+- **both cannot be used to boot EC2 instances**
+
+### Instance Store Volumes - Architecture
+
+- `Block storage` devices
+- These are physically connect to **ONE EC2 HOST**
+  - Instances on the host can access them
+  - Since they are local to the host, they provide the highest storage performance in AWS
+  - Included in the price (Different instance types come with different selections of instance store volumes)
+    - Some instance types do not support instance store
+    - The larger your instance size generally the larger the instance store volume
+- **ATTACHED AT LAUNCH**
+  - Cannot attach them after launch
+- **TEMPORARY STORAGE**
+  - If an EC2 instance `moves` to another host any data that was present on an instance store is lost
+  - If a physical volume `fails`, data on that volume is lost
+  - If an instance is `resized` it is moved to another host and data is lost in the instance store
+- Much higher throughput and `IOPs` than using `EBS`
+  - D3 Instance (Storage optimized) = `4.6GB/s` throughput + large storage (Uses `HDD`)
+  - I3 Instance (Storage Optimize) =   `16GB/s` throughput (Uses `NVME SSDs`)
+  - **More IOPs and Throughput vs EBS**
+
+### Choosing between `Instance Store` & `EBS`
+
+#### Common scenarios
+
+- If you need `persistent` storage choose `EBS` (Not `instance store`)
+- If you need `resilient` storage choose `EBS` (Not `instance store`)
+- If you need storage that is `isolated` from instance `lifecycle` choose `EBS` (Not `instance store`)
+- If you need `resilence` but your app has `in-built replication` ... `it depends`
+- if you need `High performance` ... `it depends`
+- if you need `Super high performance` use `Instance store`
+- If cost is a primary concern it makes sense to use `instance store` (its often included in the instance price)
+  - If you need to use EBS `ST1` & `SC1` are much cheaper than SSD based volumes
+
+#### Handy slide with lots of good data to remember
+
+![handyslide](handyinfo.png)
 
 ## Encryption 101
 
